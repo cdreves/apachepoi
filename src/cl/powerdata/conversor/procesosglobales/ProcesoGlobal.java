@@ -1,4 +1,4 @@
-package powerdata.conversor.procesosglobales;
+package cl.powerdata.conversor.procesosglobales;
 
 import java.io.BufferedWriter;
 import java.io.File;

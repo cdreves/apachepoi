@@ -1,11 +1,8 @@
-package powerdata.conversor.lectura.excel;
+package cl.powerdata.conversor.lectura.excel;
 
-import java.io.BufferedWriter;
+import cl.powerdata.conversor.escritura.archivo.EscrituraArchivo;
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -17,14 +14,14 @@ import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.apache.poi.openxml4j.opc.OPCPackage;
 import org.apache.poi.poifs.filesystem.POIFSFileSystem;
 import org.apache.poi.ss.usermodel.Cell;
-import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.xssf.usermodel.XSSFCell;
 import org.apache.poi.xssf.usermodel.XSSFRow;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
-import powerdata.conversor.procesosglobales.ProcesoGlobal;
-import powerdata.conversor.escritura.archivo.*;
+import cl.powerdata.conversor.procesosglobales.ProcesoGlobal;
+import cl.powerdata.conversor.utils.ExcelUtils;
+import org.apache.commons.lang3.StringUtils;
 
 /**
  * Clase para lectura de archivo Excel
@@ -68,32 +65,21 @@ public class LecturaInput {
                 List cellTempList = new ArrayList();
                 while (iterator.hasNext()) {
                     XSSFCell xssfCell = (XSSFCell) iterator.next();
-
+                    String valor = ExcelUtils.getValue(xssfCell);
 
                     xssfCell.setCellType(Cell.CELL_TYPE_STRING);
-                    System.out.println("Valor de celda: " + xssfCell);
+                    System.out.println("Valor de celda: " + valor);
 
-                    if (xssfCell.toString().equals(null) || xssfCell.toString().equals("")) {
+                    if (StringUtils.isEmpty(valor)) {
                         System.out.println("fila vacia");
                         //cellTempList.add(";");
                         cellTempList.add(xssfCell);
                     } else {
                         cellTempList.add(xssfCell);
                     }
-
-
-
-
-
                 }
                 cellDataList.add(cellTempList);
-
             }
-
-
-
-
-
         } catch (Exception e) {
             e.printStackTrace();
         }

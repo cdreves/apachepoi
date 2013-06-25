@@ -1,7 +1,6 @@
-package powerdata.conversor.escritura.archivo;
+package cl.powerdata.conversor.escritura.archivo;
 
 import java.io.BufferedWriter;
-import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.List;

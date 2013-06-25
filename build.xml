@@ -72,35 +72,35 @@
 
     -->
 
-	   <target name="todo" depends="empaqueta, documenta">
-	   </target>
+    <target name="todo" depends="empaqueta, documenta">
+    </target>
 
-	   <target name="empaqueta" depends="compila">
-	      <jar destfile="../apachePOI/jar/fichero.jar" includes="../apachePOI/class/**/*.class">
+    <target name="empaqueta" depends="compila">
+        <jar destfile="../apachePOI/jar/fichero.jar" includes="../apachePOI/class/**/*.class">
             <manifest>
                 <attribute name="Main-Class" value="powerdata.conversor.main.ClasePrincipal"/>
             </manifest>
-	      	</jar>
-	   </target>
+        </jar>
+    </target>
 
     <path id="classpath">
         <fileset dir="${lib.dir}" includes="**/*.jar"/>
     </path>
 
-	   <target name="compila">
-	      <javac srcdir="../apachePOI/src/." destdir="../apachePOI/class">
-	      	 <classpath>
-	    		<pathelement path="../apachePOI/lib"/>
-	        	<fileset dir="../apachePOI/lib">
-	            	<include name="*.jar"/>
-	        	</fileset>
-	   	     </classpath>	      	
-	      </javac>
-	   </target>
+    <target name="compila">
+        <javac srcdir="../apachePOI/src/." destdir="../apachePOI/class">
+            <classpath>
+                <pathelement path="../apachePOI/lib"/>
+                <fileset dir="../apachePOI/lib">
+                    <include name="*.jar"/>
+                </fileset>
+            </classpath>	      	
+        </javac>
+    </target>
 
-	   <target name="documenta">
-	      <javadoc sourcepath="../apachePOI/src/." destfile="../apachePOI/javadoc" packagenames="*"/>
-	   </target>
+    <target name="documenta">
+        <javadoc sourcepath="../apachePOI/src/." destfile="../apachePOI/javadoc" packagenames="*"/>
+    </target>
 	
 	
 

@@ -1,9 +1,7 @@
-package powerdata.conversor.main;
+package cl.powerdata.conversor.main;
 
-import java.io.File;
-
-import powerdata.conversor.lectura.excel.*;
-import powerdata.conversor.procesosglobales.ProcesoGlobal;
+import cl.powerdata.conversor.lectura.excel.LecturaInput;
+import cl.powerdata.conversor.procesosglobales.ProcesoGlobal;
 
 /**
  * Clase Principal de programa.
