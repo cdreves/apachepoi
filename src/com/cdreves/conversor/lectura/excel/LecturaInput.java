@@ -1,6 +1,6 @@
-package cl.powerdata.conversor.lectura.excel;
+package com.cdreves.conversor.lectura.excel;
 
-import cl.powerdata.conversor.escritura.archivo.EscrituraArchivo;
+import com.cdreves.conversor.escritura.archivo.EscrituraArchivo;
 import java.io.File;
 import java.io.FileInputStream;
 import java.util.ArrayList;
@@ -19,15 +19,16 @@ import org.apache.poi.xssf.usermodel.XSSFRow;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
-import cl.powerdata.conversor.procesosglobales.ProcesoGlobal;
-import cl.powerdata.conversor.utils.ExcelUtils;
+import com.cdreves.conversor.procesosglobales.ProcesoGlobal;
+import com.cdreves.conversor.utils.ExcelUtils;
 import org.apache.commons.lang3.StringUtils;
 
 /**
  * Clase para lectura de archivo Excel
+
  *
  * @author Carlos Dreves N
- * @version 1.0.0 12-12-2012.
+ * @version 1.0.0 28-07-2014.
  * @since JDK5.0
  */
 public class LecturaInput {
@@ -37,6 +38,7 @@ public class LecturaInput {
 
     /**
      * Metodo principal para lectura de archivo Excel con formato Xlsx.
+
      *
      * @param fileName Nombre de archivo excel a convertir.
      * @param numeroHoja N�mero de Hoja de archivo excel a convertir.
@@ -96,6 +98,7 @@ public class LecturaInput {
      * Metodo principal para lectura de archivo Excel con formato Xls y que
      * ejecuta m�todo para escritura de archvo, enviandole por par�metro el
      * contenido del archivo.
+
      *
      * @param fileName Nombre de archivo excel a convertir.
      * @param numeroHoja N�mero de Hoja de archivo excel a convertir.
@@ -118,18 +121,21 @@ public class LecturaInput {
             Iterator rowIterator = hssfSheet.rowIterator();
 
             while (rowIterator.hasNext()) {
+            
                 //HSSFCell cell = null;
                 HSSFRow hssfRow = (HSSFRow) rowIterator.next();
                 Iterator iterator = hssfRow.cellIterator();
                 List cellTempList = new ArrayList();
-                while (iterator.hasNext()) {
-
-                    HSSFCell hssfCell = (HSSFCell) iterator.next();
+                
+                
+                //while (iterator.hasNext()) {
+                for(int i=0; i < hssfRow.getLastCellNum(); i++){
+                    HSSFCell hssfCell = hssfRow.getCell(i, hssfRow.CREATE_NULL_AS_BLANK);
                     hssfCell.setCellType(Cell.CELL_TYPE_STRING);
                     
                     System.out.println("Valor de celda: " + hssfCell);
 
-                    if (hssfCell.toString().equals(null) || hssfCell.toString().equals("")) {
+                    if (hssfCell.toString().equals(null) || hssfCell.toString().equals("") || hssfCell.toString().length()<1 || hssfCell.getRichStringCellValue().getString().equals("") || hssfCell.getRichStringCellValue().getString().equals(null)) {
                         System.out.println("fila vacia");
                         //cellTempList.add(";");
                         cellTempList.add(hssfCell);
@@ -138,7 +144,7 @@ public class LecturaInput {
                     }
                     
                    // cellTempList.add(hssfCell);
-                    System.out.println(hssfCell);
+                    System.out.println("------------"+hssfCell);
                 }
 
                 cellDataList.add(cellTempList);
