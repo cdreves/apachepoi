@@ -1,4 +1,4 @@
-package cl.powerdata.conversor.utils;
+package com.cdreves.conversor.utils;
 
 import java.io.Serializable;
 import org.apache.commons.lang3.StringUtils;

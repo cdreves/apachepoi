@@ -1,7 +1,7 @@
-package cl.powerdata.conversor.main;
+package com.cdreves.conversor.main;
 
-import cl.powerdata.conversor.lectura.excel.LecturaInput;
-import cl.powerdata.conversor.procesosglobales.ProcesoGlobal;
+import com.cdreves.conversor.lectura.excel.LecturaInput;
+import com.cdreves.conversor.procesosglobales.ProcesoGlobal;
 
 /**
  * Clase Principal de programa.
